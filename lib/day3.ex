@@ -1,7 +1,7 @@
 defmodule Day3 do
   require Integer
-  @input Aoc.read_file("input/day3_input.txt")
 
+  @input Aoc.read_file("input/day3_input.txt")
   @alphabet String.split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", "")
 
   def get_position(char) do
@@ -12,7 +12,7 @@ defmodule Day3 do
   def remove_last([head | tail]), do: [head | remove_last(tail)]
   def remove_last([]), do: []
 
-  def part1 do
+  defp part1 do
     @input
     |> Enum.reduce(0, fn line, common ->
       {first, second} =
@@ -20,31 +20,31 @@ defmodule Day3 do
         |> String.trim()
         |> String.split_at(div(String.length(line), 2))
 
-      first = String.split(first, "")
-      second = String.split(second, "")
+      first = String.graphemes(first)
+      second = String.graphemes(second)
 
       common +
         (Enum.filter(first, fn item -> Enum.member?(second, item) end)
          |> Enum.uniq()
-         |> List.last()
+         |> Enum.max()
          |> get_position())
     end)
   end
 
-  def part2 do
+  defp part2 do
     @input
     |> remove_last()
     |> Enum.chunk_every(3)
     |> Enum.reduce(0, fn [line1, line2, line3], common ->
-      line1 = String.split(line1, "")
-      line2 = String.split(line2, "")
-      line3 = String.split(line3, "")
+      line1 = String.graphemes(line1)
+      line2 = String.graphemes(line2)
+      line3 = String.graphemes(line3)
 
       common +
         (Enum.filter(line1, fn item -> Enum.member?(line2, item) end)
          |> Enum.filter(fn item -> Enum.member?(line3, item) end)
          |> Enum.uniq()
-         |> List.last()
+         |> Enum.max()
          |> get_position())
     end)
   end

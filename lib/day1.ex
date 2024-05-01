@@ -1,5 +1,7 @@
 defmodule Day1 do
-  def calculate_sums(list) do
+  @buff Aoc.read_file("input/day1_input.txt")
+
+  defp calculate_sums(list) do
     list
     |> Enum.reduce([0], fn line, sums ->
       case line do
@@ -13,15 +15,13 @@ defmodule Day1 do
     end)
   end
 
-  def part1 do
-    Aoc.read_file("input/day1_input.txt")
-    |> calculate_sums()
-    |> Enum.max()
+  defp part1 do
+    @buff |> calculate_sums() |> Enum.max()
   end
 
-  def part2 do
+  defp part2 do
     [first, second, third | _] =
-      Aoc.read_file("input/day1_input.txt")
+      @buff
       |> calculate_sums
       |> Enum.sort(:desc)
 
