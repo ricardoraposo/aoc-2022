@@ -1,12 +1,4 @@
 defmodule Day1 do
-  def read_file(path) do
-    case File.read(path) do
-      {:ok, content} -> content
-      {:error, reason} -> raise reason
-    end
-    |> String.split("\n")
-  end
-
   def calculate_sums(list) do
     list
     |> Enum.reduce([0], fn line, sums ->
@@ -22,23 +14,24 @@ defmodule Day1 do
   end
 
   def part1 do
-    read_file("input/day1_input.txt")
+    Aoc.read_file("input/day1_input.txt")
     |> calculate_sums()
     |> Enum.max()
-    |> IO.inspect()
   end
 
   def part2 do
     [first, second, third | _] =
-      read_file("input/day1_input.txt")
+      Aoc.read_file("input/day1_input.txt")
       |> calculate_sums
-      |> Enum.sort(&>/2)
+      |> Enum.sort(:desc)
 
-    IO.inspect(first + second + third)
+    first + second + third
   end
 
   def run do
-    part1()
-    part2()
+    IO.puts("Day 1")
+    IO.puts("Part 1: " <> Integer.to_string(part1()))
+    IO.puts("Part 2: " <> Integer.to_string(part2()))
+    IO.puts("============================")
   end
 end

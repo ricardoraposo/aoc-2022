@@ -11,7 +11,7 @@ defmodule Day2 do
     scissors: 3
   }
 
-  @buff Day1.read_file("input/day2_input.txt")
+  @buff Aoc.read_file("input/day2_input.txt")
 
   def part1 do
     @buff
@@ -54,7 +54,9 @@ defmodule Day2 do
   end
 
   def run do
-    IO.puts("part1: " <> Integer.to_string(part1()))
-    IO.puts("part2: " <> Integer.to_string(part2()))
+    IO.puts("Day 2")
+    IO.puts("Part 1: " <> Integer.to_string(part1()))
+    IO.puts("Part 2: " <> Integer.to_string(part2()))
+    IO.puts("============================")
   end
 end
