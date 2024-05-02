@@ -8,10 +8,6 @@ defmodule Day3 do
     Enum.find_index(@alphabet, fn item -> item == char end)
   end
 
-  def remove_last([_]), do: []
-  def remove_last([head | tail]), do: [head | remove_last(tail)]
-  def remove_last([]), do: []
-
   defp part1 do
     @input
     |> Enum.reduce(0, fn line, common ->
@@ -20,20 +16,20 @@ defmodule Day3 do
         |> String.trim()
         |> String.split_at(div(String.length(line), 2))
 
-      first = String.graphemes(first)
-      second = String.graphemes(second)
+      first = String.split(first, "")
+      second = String.split(second, "")
 
       common +
         (Enum.filter(first, fn item -> Enum.member?(second, item) end)
          |> Enum.uniq()
-         |> Enum.max()
+         |> List.last()
          |> get_position())
     end)
   end
 
   defp part2 do
     @input
-    |> remove_last()
+    |> Aoc.remove_last()
     |> Enum.chunk_every(3)
     |> Enum.reduce(0, fn [line1, line2, line3], common ->
       line1 = String.graphemes(line1)
