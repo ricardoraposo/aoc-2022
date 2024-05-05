@@ -6,7 +6,7 @@ defmodule Day5 do
       @input
       |> Enum.slice(0..7)
       |> Enum.map(fn line ->
-        Enum.map(1..33//4, fn index -> String.at(line, index) end)
+        for index <- 0..8, do: String.at(line, index * 4 + 1)
       end)
 
     Enum.map(1..length(hd(matrix)), fn col ->
