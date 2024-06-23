@@ -3,6 +3,7 @@ defmodule Day6 do
             {:ok, content} -> content
             {:error, reason} -> raise reason
           end)
+         |> String.split("")
 
   def check(list, index, size) do
     len = list |> Enum.slice(0..(size - 1)) |> Enum.uniq() |> length()
@@ -14,13 +15,13 @@ defmodule Day6 do
   end
 
   def part1 do
-    input = @input |> String.split("") |> Enum.slice(1..-1//1)
+    input = @input |> Enum.slice(1..-1//1)
 
     check(input, 4, 4)
   end
 
   def part2 do
-    input = @input |> String.split("") |> Enum.slice(1..-1//1)
+    input = @input |> Enum.slice(1..-1//1)
 
     check(input, 14, 14)
   end

@@ -23,5 +23,7 @@ defmodule Aoc do
     Day4.run()
     Day5.run()
     Day6.run()
+    Day7.run()
+    Day8.run()
   end
 end
